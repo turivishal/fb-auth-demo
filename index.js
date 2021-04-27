@@ -5,7 +5,7 @@ const path = require('path');
 var fs = require('fs');
 var server;
 // LOCAL
-if (false) {
+if (true) {
     var options = {
         key: fs.readFileSync('./key.pem'),
         cert: fs.readFileSync('./cert.pem')
