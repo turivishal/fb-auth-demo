@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
+
+<head>
+    <!-- # -->
+    <title>FB Auth</title>
+    <!-- # -->
+    <noscript></noscript>
+
+    <script>
+      window.fbAsyncInit = function () {
+        // JavaScript SDK configuration and setup
+        FB.init({
+          appId:    '322002990138198', // Facebook App ID
+          cookie:   true, // enable cookies
+          xfbml:    true, // parse social plugins on this page
+          version:  'v14.0' //Graph API version
+        });
+      };
+
+      // Load the JavaScript SDK asynchronously
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+     // Facebook Login with JavaScript SDK
+      function launchWhatsAppSignup() {
+        // Conversion tracking code
+        fbq && fbq('trackCustom', 'WhatsAppOnboardingStart', {appId: '322002990138198', feature: 'whatsapp_embedded_signup'});
+        
+        // Launch Facebook login
+        FB.login(function (response) {
+          if (response.authResponse) {
+            const accessToken = response.authResponse.accessToken;
+            //Use this token to call the debug_token API and get the shared WABA's ID
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        }, {
+          scope: 'business_management,whatsapp_business_management',
+          extras: {
+            feature: 'whatsapp_embedded_signup',
+            setup: {
+              //... // Prefilled data can go here
+            }
+          }
+        });
+      }
+     
+    </script>
+
+</head>
+
+<body>
+
+    <button onclick="launchWhatsAppSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
+
+    <!-- # SUPPORT FOR IE-->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+</body>
+
+</html>
